@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="containern">
+    <div class="row">
+
+        <h1 style="color: aliceblue;"></h1>
+        <!-- <div class="col-lg-4"></div>
+        <div class="col-lg-8"></div> -->
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <label for="">username</label>
+            <input type="text" name="username" value="{{user}}" class="form-control">
+            <label for="">First Name</label>
+            <input type="text" name="firstname" class="form-control">
+            <label for="">Lastname</label>
+            <input type="text" name="lastname" class="form-control">
+            <label for="">IMAGE</label>
+            <input type="file" name="image" class="form-control">
+            <label for="">Email</label>
+            <input type="email" name="email" value="{{user.email}}" class="form-control"><br>
+            <div class="text-center b">
+                <input type="submit" value="submit" class="btn btn-success">
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

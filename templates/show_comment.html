@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <style>
+    .container-fluid.wordpressFunctionAP {
+        margin-top: 20px;
+        background: linear-gradient(to bottom, #000428, #004683);
+        color: lightgrey;
+    }
+
+    .all {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgb(93, 99, 153);
+    }
+
+    .topic {
+        background: linear-gradient(to bottom, #000428, #004683);
+    }
+</style> -->
+
+<div class="container-fluid wordpressFunctionAP">
+    <div class="container">
+        <div class="row">
+            <div class="all">
+                {% if comment %}
+                <h6 class="text-center">COMMENTS</h6><br>
+                {% for i in comment %}
+                <hr>
+                <div class="topic">
+                    <p>{{i.comment}}</p>
+                    <p style="float: right;" class="btn btn-outline-primary">Comment by:{{i.user}}</p>
+                    {% if i.user == user.username %}
+                    <a href="{% url 'delete_comment' i.id %}" class="btn btn-danger"> <i class="fa fa-trash-o"
+                            style="font-size:20px"></i></a>&nbsp;&nbsp;&nbsp;
+                    {% endif %}
+                    <br>
+                    <br>
+                    {% endfor %}
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% else %}
+<p>No Comment Till Now</p>
+{% endif %}
+<form class="d-flex" method="post" action="/s/comment">
+    {% csrf_token %}
+
+    Leave Comment
+    <input class="form-control me-2" style="background-color: #1b5e99; color: aliceblue;" type="text" name="comment">
+    {% for j in comment %}
+    <input class="form-control me-2" value="{{j.question}}" style="background-color: #1b5e99; color: aliceblue;"
+        type="text" name="ques" placeholder="question" hidden>
+    {% endfor %}
+    <button class="btn btn-outline-warning" type="submit">SUBMIT</button>
+
+</form>
+</div>
+</div>
+
+{% endblock %}

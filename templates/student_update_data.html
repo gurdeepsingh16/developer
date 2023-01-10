@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h2 class="text-center">PLEASE POST YOUR QUESTION AND SOLUTION HERE </h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="">QUESTION</label>
+        <input type="text" name="question" class="form-control"  value="{{data.question}}"  placeholder="ENTER QUESTION HERE"><br>
+                <label for="">USER</label>
+        <input type="text" name="user" class="form-control"  value="{{data.upload_by}}"<br>
+        <label for="">SOLUTION</label>
+        <textarea name="program" class="ckeditor"  cols="60" rows="10">
+{{data.Program|safe}}
+        </textarea><br>
+        <div class="text-center">
+            <input type="submit" value="UPDATE" class="btn btn-primary">
+        </div><br>
+    </form>
+</div>sss
+
+{% load static %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .container {
+        margin-top: 50px;
+        /* border: 2px solid; */
+        padding: 63px;
+    }
+
+    .tu {
+        float: right;
+    }
+</style>
+<div class="container">
+    <div class="row">
+
+        <h1 class="text-center">LOGIN </h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" name="username" class="form-control">
+            <label for="">Password</label>
+            <input type="password" name="password" class="form-control">
+            <br>
+            <div class="text-center t">
+
+                <input type="submit" name="submit" class="btn btn-success">
+            </div>
+
+            <div class="tu">
+
+                If You Don't Have An Account <a href="{% url 'student_register' %}">Click Here</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .container-fluid.wordpressFunctionAP {
+        margin-top: 20px;
+        
+        color: lightgrey;
+    }
+
+    .all {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgb(93, 99, 153);
+    }
+
+    .topic {
+        background-color: black;
+    }
+
+    .modal-content {
+        background: linear-gradient(to bottom, #000428, #004683);
+    }
+</style>
+
+<div class="container-fluid wordpressFunctionAP">
+    <div class="container">
+        {% for i in data %}
+        <div class="row">
+
+            <div class="col-md-6 le ft">
+                <div class="all">
+                    {{i.id}}.
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}">
+                        {{i.questions|capfirst}}
+                    </button>
+                    <!-- Modal -->
+                   <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                        <div class="modal-body">
+                                            {{i.program|safe}}
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+        </div> 
+
+        {% endfor %} 
+         </li>
+
+
+        {% endblock %}

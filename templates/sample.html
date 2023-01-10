@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<style>
+    .container-fluid.wordpressFunctionAP {
+        margin-top: 20px;
+        color: lightgrey;
+    }
+
+    .all {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgb(65, 65, 99);
+    }
+
+    .topic {
+
+        padding: 47px;
+        text-align: center;
+
+    }
+</style>
+
+<div class="container-fluid wordpressFunctionAP">
+    <div class="container">
+        <div class="row">
+            {% for i in data %}
+            <div class="col-md-6 le ft">
+                <div class="all">
+                    <div class="topic">
+                        <a class="btn btn-primary" href="s{{i.id}}">{{i.sub_topic}}</a>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+            {% endfor %}
+
+            {% for d in data1 %}
+
+            <h1 class="text-center" style="color: aqua;">{{d.title}}</h1>
+
+            <p>{{d.code|safe}}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+</li>
+{% endblock %}

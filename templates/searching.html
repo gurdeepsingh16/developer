@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .container-fluid.wordpressFunctionAP {
+        margin-top: 20px;
+       
+        color: lightgrey;
+
+    }
+
+    .all {
+        margin-top: 50px;
+        padding: 8px;
+        background-color: rgb(93, 99, 153);
+    }
+
+    .topic {
+        background-color: black;
+    }
+
+    .row {
+    
+        border: 9px solid;
+    display: flex;
+    justify-content: center;
+    border-color: #43548a;
+}
+</style>
+
+
+<div class="container-fluid wordpressFunctionAP">
+    <div class="container">
+        <div class="row">
+        {% if data1 %}
+            {% for i in data1 %}
+            
+            <div class="col-md-6 le ft">
+                <div class="all">
+                    <h4 style="color:white;" class="text-center">{{i.title}}</h4>
+                    <div class="topic">
+                        <p>{{i.code|safe}}</p>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+            {% endfor %}
+        {% else %}
+        <h2 class="text-center" > NO FOUND  </h2>
+        {% endif %}
+        </div>
+    </div>
+</div>
+</li>
+
+
+
+{% endblock %}

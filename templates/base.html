@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<style>
+  body {
+    /* background-color: black; */
+    background: linear-gradient(to bottom, #000428, #004683);
+    color: white;
+  }
+
+  h6 {
+    border: 2px solid;
+    color: cornflowerblue;
+    padding: 7px;
+  }
+  
+</style>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color:White" href="{% url 'home' %}">DEVELOPER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'home' %}">HOME</a>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'add' %}">ADD</a>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'add1' %}">ADD PRACTICE
+                QUESTION</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'sly' %}">SLLAYBUS</a>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'show' %}">PRACTICE
+                QUESTIONS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'stushow' %}">STUDENT
+                CORNER</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'paper' %}">
+                QUIZ</a>
+            </li>
+           
+          </ul>
+          <!-- <h6 style="border:2px;"> HELLO {{user|capfirst}} </h6>&nbsp;&nbsp; -->
+
+          <form class="d-flex" role="search" method="post" action="/search">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit"><i class="fa fa-search" style="font-size:20px"></i></button>
+          </form> &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <a href="{% url 'profile' %}"> <i class="fa fa-slideshare"
+              style="font-size:36px;color:rgb(73, 188, 223)"></i></a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="{% url 'logout' %}" class="btn btn-danger"><i class="fa fa-sign-out" style="font-size:15px"></i></a>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" style="color:White" href="{% url 'login' %}">LOGIN</a>
+          </li>
+
+        </div>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+
+    {% endblock %}
+    
+  </main>
+  <br>
+  <footer >
+    {% include 'footer.html' %}
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+
+</body>
+
+</html>

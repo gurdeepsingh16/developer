@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .container-fluid.wordpressFunctionAP {
+        margin-top: 20px;
+        background: linear-gradient(to bottom, #000428, #004683);
+        color: lightgrey;
+    }
+
+    .all {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgb(93, 99, 153);
+    }
+
+    .topic {
+        background: linear-gradient(to bottom, #000428, #004683);
+    }
+</style>
+
+<div class="container-fluid wordpressFunctionAP">
+    <div class="container">
+        <a href="{% url 'stuadd' %}" class="btn btn-primary">ADD QUESTIONS HERE </a>
+        <div class="row">
+            {% for i in data %}
+            <div class="col-md-6 le ft">
+                <div class="all">
+                    <h4 style="color: rgb(255, 249, 249);" class="text-center">{{i.question|capfirst}}</h4>
+                    <div class="topic">
+                        <p style="float: right;color: aqua;">POST BY-{{i.upload_by|capfirst}}</p>
+                        <p>{{i.Program|safe|linebreaks}}</p>
+                    </div>
+                    <form class="d-flex" method="post" action="/s/comment">
+                        {% csrf_token %}
+                        Leave Comment
+                        <input class="form-control me-2" style="background-color: #1b5e99; color: aliceblue;"
+                            type="text" name="comment">
+                        <input class="form-control me-2" value="{{i.question}}"
+                            style="background-color: #1b5e99; color: aliceblue;" type="text" name="ques"
+                            placeholder="uestion" hidden>
+                        <button class="btn btn-outline-warning" type="submit">SUBMIT</button>
+
+                    </form>
+                </div>
+                <a class="btn btn-outline-info" href="{% url 'comment_show' i.id  %}"
+                    style="color: rgb(163, 168, 168); float: right;">Show comments</a>
+
+                <hr>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if i.Program %}
+    {% include "page.html" with page=i %}
+    {% endif %}
+</div>
+</li>
+
+{% endblock %}

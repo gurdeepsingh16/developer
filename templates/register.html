@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .container {
+        margin-top: 20px;
+
+    }
+
+    .tu {
+        float: right;
+    }
+</style>
+<div class="container">
+    <div class="row">
+
+        <h1 class="text-center">REGISTER YOUR SELF</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" name="username" class="form-control">
+            <label for="">Email</label>
+            <input type="email" name="email" class="form-control">
+            <label for="">Password</label>
+            <input type="password" name="password" class="form-control">
+            <label for="">Confirm_Password</label>
+            <input type="password" name="confirm_password" class="form-control"><br>
+            <div class="text-center t">
+
+                <input type="submit" name="submit" class="btn btn-success">
+            </div>
+            <div class="tu">
+                If You Already Have An Account <a href="{% url 'login' %}">Click Here</a>
+
+            </div>
+        </form>
+        {% if messages %}
+        {% for i in messages %}
+        {{i}}
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
