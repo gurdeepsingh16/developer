@@ -38,7 +38,7 @@ def student_login(request):
         password = request.POST['password']
 
         user = auth.authenticate(username=username, password=password)
-        
+
         if user is not None:
             auth.login(request, user)
             return redirect('home')
@@ -69,7 +69,7 @@ def profile(request):
             lastname = request.POST['lastname']
             image = request.FILES['image']
             email = request.POST['email']
-            
+
             data = Student_profile(
                 username=username, first_name=firstname, profile_pic=image, last_name=lastname, email=email)
             data.save()
@@ -79,6 +79,7 @@ def profile(request):
 
 def stushow(request):
     data = student_question.objects.all()
+    
     return render(request, 'student_show.html', {'data': data})
 
 

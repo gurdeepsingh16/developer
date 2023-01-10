@@ -23,14 +23,21 @@
     <div class="container">
         <a href="{% url 'stuadd' %}" class="btn btn-primary">ADD QUESTIONS HERE </a>
         <div class="row">
+
+            
             {% for i in data %}
+            {% if i.permission %}  
             <div class="col-md-6 le ft">
                 <div class="all">
+                     
                     <h4 style="color: rgb(255, 249, 249);" class="text-center">{{i.question|capfirst}}</h4>
                     <div class="topic">
                         <p style="float: right;color: aqua;">POST BY-{{i.upload_by|capfirst}}</p>
                         <p>{{i.Program|safe|linebreaks}}</p>
                     </div>
+                    
+                 
+
                     <form class="d-flex" method="post" action="/s/comment">
                         {% csrf_token %}
                         Leave Comment
@@ -47,14 +54,13 @@
                     style="color: rgb(163, 168, 168); float: right;">Show comments</a>
 
                 <hr>
+                {% endif %}
 
             </div>
             {% endfor %}
         </div>
     </div>
-    {% if i.Program %}
-    {% include "page.html" with page=i %}
-    {% endif %}
+    
 </div>
 </li>
 

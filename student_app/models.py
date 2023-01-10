@@ -16,6 +16,7 @@ class Student_profile(models.Model):
 
 
 class student_question(models.Model):
+    permission = models.BooleanField(default=False)
     question = models.CharField(max_length=255)
     Program = RichTextField(blank=True, null=True)
     upload_by = models.CharField(max_length=255)
