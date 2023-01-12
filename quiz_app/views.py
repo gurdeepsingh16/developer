@@ -27,14 +27,17 @@ def check_answer(request):
             else:
                 wrong += 1
         percent = score/(total*10) * 100
+        questions = paper.objects.all().order_by("?")
         context = {
             'score': score,
             'time': request.POST.get('timer'),
             'correct': correct,
             'wrong': wrong,
             'percent': percent,
-            'total': total
+            'total': total,
+            'questions': questions
         }
+
         return render(request, 'quiz/result.html', context)
     else:
         questions = paper.objects.all().order_by("?")

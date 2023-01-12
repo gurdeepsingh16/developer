@@ -31,6 +31,13 @@
     </div>
  
 </div>
+{% for i in questions %}
+{{ forloop.counter }}.
+{{i.questions}}<br>
+answer .{{i.right_answer}}<br>
+<hr>
+{% endfor %}
+
 
  
 {% endblock %}

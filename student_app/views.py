@@ -36,9 +36,8 @@ def student_login(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-
+        
         user = auth.authenticate(username=username, password=password)
-
         if user is not None:
             auth.login(request, user)
             return redirect('home')
@@ -55,8 +54,7 @@ def logout(request):
 
 def profile(request):
     user = request.user
-    data = Student_profile.objects.filter(
-        username__exact=user).values('first_name')
+    data = Student_profile.objects.filter(username__exact=user).values('first_name')
     if data:
         student_q = student_question.objects.filter(upload_by__exact=user)
         data2 = Student_profile.objects.filter(
